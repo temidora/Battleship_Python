@@ -1,0 +1,62 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Jan 19 11:31:32 2022
+
+@author: temid
+"""
+
+def makeBoard():
+    #empty matrix: 21 rows, 20 columns  
+    Matrix = [[ " " for y in range(21)] for x in range(22)] 
+
+    # makes crossings
+    loop=0
+    for x in range(len(Matrix)):
+        for y in range(len(Matrix[0])):
+            #drukowanie naglowka 1-5
+            if (x==0 and y%4==2):
+                for num in range(1+loop,int(len(Matrix[0])/4)+1):
+                    Matrix[x][y]=num
+                    loop+=1
+                    break
+            elif (x%4==1 and y%4==0):
+                     Matrix[x][y]="+"
+            
+            elif(x%4==1):
+                     Matrix[x][y]="-"
+            
+            elif(y%4==0 and x!=0):
+                     Matrix[x][y]="|" 
+    return Matrix                    
+    #Matrix[3][2]='O' #proba czy sie drukuje
+    #Matrix[7][2]='o'
+                    
+    #delete commas and quotes print board
+    #for number in range(len(Matrix)):  
+    #    print(*Matrix[number], sep = "") 
+        
+#checks if I can put symbol on board, if yes it puts and print board
+def put_symbol(x,y,player):
+    Matrix=makeBoard()
+    if  (x%4!=2 or y%4!=3):   #a moze match, case uzyc, tylko jak? to chyba tylko do sprawdzania jednej wartosci
+        print("You have chosen wrong place: x={2,6,10,14,18}, y={3,7,11,15,19}")
+        
+    elif (player!="X" or player!="O"):
+        print("You can choose just ""X"" or ""O""")
+                
+    elif Matrix[x][y]!=" ":
+        print("This place is taken")
+                
+    else:
+        Matrix[x][y]=player
+      
+
+def printBoard(put_symbol):
+    Matrix=makeBoard()
+    #delete commas and quotes print board
+    for number in range(len(Matrix)):  
+        print(*Matrix[number], sep = "") 
+        
+        
+#wywolanie funkcji drukujacej pole gry
+printBoard(put_symbol(2,7,"X"))

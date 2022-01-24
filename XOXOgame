@@ -28,20 +28,14 @@ def makeBoard():
             elif(y%4==0 and x!=0):
                      Matrix[x][y]="|" 
     return Matrix                    
-    #Matrix[3][2]='O' #proba czy sie drukuje
-    #Matrix[7][2]='o'
-                    
-    #delete commas and quotes print board
-    #for number in range(len(Matrix)):  
-    #    print(*Matrix[number], sep = "") 
         
 #checks if I can put symbol on board, if yes it puts and print board
-def put_symbol(x,y,player):
-    Matrix=makeBoard()
-    if  (x%4!=2 or y%4!=3):   #a moze match, case uzyc, tylko jak? to chyba tylko do sprawdzania jednej wartosci
-        print("You have chosen wrong place: x={2,6,10,14,18}, y={3,7,11,15,19}")
+def put_symbol(x,y,player, Matrix):
+    #Matrix=makeBoard()
+    if  (x%4!=3 or y%4!=2):
+        print("You have chosen wrong place: x={3,7,11,15,19}, y={2,6,10,14,18}")
         
-    elif (player!="X" or player!="O"):
+    elif (player!="X" and player!="O"):
         print("You can choose just ""X"" or ""O""")
                 
     elif Matrix[x][y]!=" ":
@@ -49,14 +43,83 @@ def put_symbol(x,y,player):
                 
     else:
         Matrix[x][y]=player
-      
+        
+    return Matrix   
 
 def printBoard(put_symbol):
-    Matrix=makeBoard()
-    #delete commas and quotes print board
+    Matrix=put_symbol
+    #delete commas and quotes when prints board -> Matrix
     for number in range(len(Matrix)):  
-        print(*Matrix[number], sep = "") 
-        
-        
+        print(*Matrix[number], sep = "")   
+
+def checking(Matrix):
+    win=0
+    for x in range(3,20,4):
+        for y in range(2,19,4):  
+            #checking horizontally:
+            if (Matrix[x][y]!=" " and win==0): 
+                if ( (y==2 and Matrix[x][y]==Matrix[x][y+4]==Matrix[x][y+8]==Matrix[x][y+12]  ) or \
+                     (y==6 and Matrix[x][y]==Matrix[x][y+4]==Matrix[x][y+8]==Matrix[x][y+12]) ) :
+                    print("Horizontal check. The winner is player: "+Matrix[x][y])
+                    win+=1
+                    #break
+                #checking vertically:
+                elif ( (x==3 and Matrix[x][y]==Matrix[x+4][y]==Matrix[x+8][y]==Matrix[x+12][y]  ) or \
+                     (x==7 and Matrix[x][y]==Matrix[x+4][y]==Matrix[x+8][y]==Matrix[x+12][y]) ) :
+                    print("Vertical check. The winner is player: "+Matrix[x][y])
+                    win+=1
+                    #break
+                #checking diagonally \:    
+             #  ''' elif ( (x==3 or x==7) and (y==2 or y==6) and Matrix[x][y]==Matrix[x+4][y+4]==Matrix[x+8][y+8]==Matrix[x+12][y+12] ) :
+              #      print("Diagonal check. The winner is player: "+Matrix[x][y])
+               #     check+=1
+                    #break
+                #checking diagonally /:    
+               # elif ( (x==15 or x==19) and (y==14 or y==18) and Matrix[x][y]==Matrix[x+4][y+4]==Matrix[x+8][y+8]==Matrix[x+12][y+12] ) :
+                #    print("Diagonal check. The winner is player: "+Matrix[x][y])
+                 #   check+=1
+                    #break '''
+                else:  
+                    print("Gramy dalej")
+                    #break
+                    #break
+    print("checking done")           
+
 #wywolanie funkcji drukujacej pole gry
-printBoard(put_symbol(2,7,"X"))
+print("Hello in XOXO game, y number of column, x is a row." )
+
+#DIAGONAL dziala
+"""Matrix=makeBoard()
+Matrix=put_symbol(7,2,"O",Matrix)
+printBoard(Matrix)
+Matrix=put_symbol(11,6,"O",Matrix)
+printBoard(Matrix)
+Matrix=put_symbol(15,10,"O",Matrix)
+printBoard(Matrix)
+Matrix=put_symbol(19,14,"O",Matrix)
+printBoard(Matrix)
+checking(Matrix) """
+
+#HORIZONTAL dziala
+'''Matrix=makeBoard()
+Matrix=put_symbol(7,2,"O",Matrix)
+printBoard(Matrix)
+Matrix=put_symbol(7,6,"O",Matrix)
+printBoard(Matrix)
+Matrix=put_symbol(7,10,"O",Matrix)
+printBoard(Matrix)
+Matrix=put_symbol(7,14,"O",Matrix)
+printBoard(Matrix)
+checking(Matrix) '''
+
+#VERTICAL
+Matrix=makeBoard()
+Matrix=put_symbol(7,2,"O",Matrix)
+printBoard(Matrix)
+Matrix=put_symbol(11,2,"O",Matrix)
+printBoard(Matrix)
+Matrix=put_symbol(15,2,"O",Matrix)
+printBoard(Matrix)
+Matrix=put_symbol(19,2,"O",Matrix)
+printBoard(Matrix)
+checking(Matrix) 

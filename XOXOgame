@@ -62,34 +62,33 @@ def checking(Matrix):
                      (y==6 and Matrix[x][y]==Matrix[x][y+4]==Matrix[x][y+8]==Matrix[x][y+12]) ) :
                     print("Horizontal check. The winner is player: "+Matrix[x][y])
                     win+=1
-                    #break
+                    
                 #checking vertically:
                 elif ( (x==3 and Matrix[x][y]==Matrix[x+4][y]==Matrix[x+8][y]==Matrix[x+12][y]  ) or \
                      (x==7 and Matrix[x][y]==Matrix[x+4][y]==Matrix[x+8][y]==Matrix[x+12][y]) ) :
                     print("Vertical check. The winner is player: "+Matrix[x][y])
                     win+=1
-                    #break
+                   
                 #checking diagonally \:    
-             #  ''' elif ( (x==3 or x==7) and (y==2 or y==6) and Matrix[x][y]==Matrix[x+4][y+4]==Matrix[x+8][y+8]==Matrix[x+12][y+12] ) :
-              #      print("Diagonal check. The winner is player: "+Matrix[x][y])
-               #     check+=1
-                    #break
+                elif ( (x==3 or x==7) and (y==2 or y==6) and Matrix[x][y]==Matrix[x+4][y+4]==Matrix[x+8][y+8]==Matrix[x+12][y+12] ) :
+                    print("Diagonal check. The winner is player: "+Matrix[x][y])
+                    win+=1
+                   
                 #checking diagonally /:    
-               # elif ( (x==15 or x==19) and (y==14 or y==18) and Matrix[x][y]==Matrix[x+4][y+4]==Matrix[x+8][y+8]==Matrix[x+12][y+12] ) :
-                #    print("Diagonal check. The winner is player: "+Matrix[x][y])
-                 #   check+=1
-                    #break '''
-                else:  
-                    print("Gramy dalej")
-                    #break
-                    #break
+                elif ( (x==3 or x==7) and (y==14 or y==18) and Matrix[x][y]==Matrix[x+4][y-4]==Matrix[x+8][y-8]==Matrix[x+12][y-12] ) :
+                    print("Diagonal check. The winner is player: "+Matrix[x][y])
+                    win+=1
+                   
+                # else:  
+                 #   print("Gramy dalej")
+                   
     print("checking done")           
 
 #wywolanie funkcji drukujacej pole gry
 print("Hello in XOXO game, y number of column, x is a row." )
 
-#DIAGONAL dziala
-"""Matrix=makeBoard()
+#DIAGONAL / dziala
+'''Matrix=makeBoard()
 Matrix=put_symbol(7,2,"O",Matrix)
 printBoard(Matrix)
 Matrix=put_symbol(11,6,"O",Matrix)
@@ -98,7 +97,19 @@ Matrix=put_symbol(15,10,"O",Matrix)
 printBoard(Matrix)
 Matrix=put_symbol(19,14,"O",Matrix)
 printBoard(Matrix)
-checking(Matrix) """
+checking(Matrix) '''
+
+#DIAGONAL \ dziala
+Matrix=makeBoard()
+Matrix=put_symbol(3,18,"O",Matrix)
+printBoard(Matrix)
+Matrix=put_symbol(7,14,"O",Matrix)
+printBoard(Matrix)
+Matrix=put_symbol(11,10,"O",Matrix)
+printBoard(Matrix)
+Matrix=put_symbol(15,6,"O",Matrix)
+printBoard(Matrix)
+checking(Matrix)
 
 #HORIZONTAL dziala
 '''Matrix=makeBoard()
@@ -113,7 +124,7 @@ printBoard(Matrix)
 checking(Matrix) '''
 
 #VERTICAL
-Matrix=makeBoard()
+'''Matrix=makeBoard()
 Matrix=put_symbol(7,2,"O",Matrix)
 printBoard(Matrix)
 Matrix=put_symbol(11,2,"O",Matrix)
@@ -122,4 +133,4 @@ Matrix=put_symbol(15,2,"O",Matrix)
 printBoard(Matrix)
 Matrix=put_symbol(19,2,"O",Matrix)
 printBoard(Matrix)
-checking(Matrix) 
+checking(Matrix) '''
